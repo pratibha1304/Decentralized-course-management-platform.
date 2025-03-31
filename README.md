@@ -1,24 +1,54 @@
-# Decentralized Course Management Platform
+# React + TypeScript + Vite
 
-## 📌 Description
-The **Decentralized Course Management Platform** is a blockchain-powered education ecosystem that allows instructors to create and manage courses transparently, while students can enroll and earn **verifiable, immutable certificates** stored on-chain. The platform eliminates intermediaries, ensuring **secure transactions, ownership of learning credentials, and decentralized governance**.
+This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
 
-## 🎯 Vision of the Project
-- Enable a **decentralized, transparent, and accessible** course management system.
-- Provide **students with verifiable on-chain certificates** to prevent credential fraud.
-- Empower educators with **direct earnings** via blockchain-based transactions.
-- Foster **peer-to-peer learning and mentorship** in a decentralized environment.
-- Implement **NFT-based course ownership** for flexible and resellable course access.
+Currently, two official plugins are available:
 
-## 🚀 Future Scope
-- **Integration with DAOs** for community-driven governance and course validation.
-- **AI-powered recommendations** to personalize learning paths.
-- **Gamification with blockchain rewards** to encourage student engagement.
-- **Multi-chain support** for lower transaction fees and scalability.
-- **Collaborations with universities and companies** for blockchain-certified degrees.
+- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
+- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
 
-## 🔗 Contract Details
-**Smart Contract Address:** `0x591551c3ee16d0978321b80744c6a2994eea436e827e8d82318092156b355d98`  
-![image](https://github.com/user-attachments/assets/cc3e78bd-4d13-46f7-9661-93c01cabdd61)
+## Expanding the ESLint configuration
 
+If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
 
+```js
+export default tseslint.config({
+  extends: [
+    // Remove ...tseslint.configs.recommended and replace with this
+    ...tseslint.configs.recommendedTypeChecked,
+    // Alternatively, use this for stricter rules
+    ...tseslint.configs.strictTypeChecked,
+    // Optionally, add this for stylistic rules
+    ...tseslint.configs.stylisticTypeChecked,
+  ],
+  languageOptions: {
+    // other options...
+    parserOptions: {
+      project: ['./tsconfig.node.json', './tsconfig.app.json'],
+      tsconfigRootDir: import.meta.dirname,
+    },
+  },
+})
+```
+
+You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+
+```js
+// eslint.config.js
+import reactX from 'eslint-plugin-react-x'
+import reactDom from 'eslint-plugin-react-dom'
+
+export default tseslint.config({
+  plugins: {
+    // Add the react-x and react-dom plugins
+    'react-x': reactX,
+    'react-dom': reactDom,
+  },
+  rules: {
+    // other rules...
+    // Enable its recommended typescript rules
+    ...reactX.configs['recommended-typescript'].rules,
+    ...reactDom.configs.recommended.rules,
+  },
+})
+```
